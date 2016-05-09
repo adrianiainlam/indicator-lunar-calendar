@@ -59,11 +59,17 @@ shown above is using timezone UTC+1.
    
    [4]: https://github.com/roadmanfong/LunarCalendar
    
- - [node-cron][5] (by @ncb000gt)
+ - [node-cron (cron)][5] (by @ncb000gt)
  
    npm package: https://www.npmjs.com/package/cron
    
    [5]: https://github.com/ncb000gt/node-cron
+   
+ - [node-dbus (dbus-native)][6] (by @sidorares)
+ 
+   npm package: https://www.npmjs.com/package/dbus-native
+   
+   [6]: https://github.com/sidorares/node-dbus
 
 ## Usage
 

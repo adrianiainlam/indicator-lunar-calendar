@@ -28,6 +28,7 @@ var Gtk = GNode.importNS('Gtk');
 var AppIndicator3 = GNode.importNS('AppIndicator3');
 var CronJob = require('cron').CronJob;
 var LunarCalendar = require('lunar-calendar-zh');
+var DBus = require('dbus-native');
 
 /* setup indicator object */
 GNode.startLoop();
@@ -82,4 +83,23 @@ var job = new CronJob({
 });
 
 update_indicator();
+
+/* Detect resume from suspend and update date/time */
+var bus = DBus.systemBus();
+var service = bus.getService('org.freedesktop.login1');
+service.getInterface(
+    '/org/freedesktop/login1',
+    'org.freedesktop.login1.Manager',
+    function(err, nm) {
+        nm.addListener('PrepareForSleep', function(arg) {
+            // PrepareForSleep returns false when resuming from suspend
+            if(!arg) {
+                job.stop(); // force cronjob to recalculate time
+                job.start();
+                update_indicator();
+            }
+        });
+    }
+);
+
 Gtk.main();
