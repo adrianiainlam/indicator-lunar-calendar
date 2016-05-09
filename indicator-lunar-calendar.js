@@ -34,7 +34,7 @@ GNode.startLoop();
 Gtk.init(null);
 var indicator = AppIndicator3.Indicator.new(
     "lunar-indicator",
-    __dirname + '/鼠.svg',
+    __dirname + '/icons/鼠.svg',
     AppIndicator3.IndicatorCategory.APPLICATION_STATUS
 );
 indicator.set_status(AppIndicator3.IndicatorStatus.ACTIVE);
@@ -70,7 +70,7 @@ function update_indicator() {
     long_date += '\n' + lunar.hour + '時';
     
     /* output to indicator */
-    indicator.set_icon(__dirname + '/' + lunar.zodiac + '.svg');
+    indicator.set_icon(__dirname + '/icons/' + lunar.zodiac + '.svg');
     indicator.set_label(compact_date, '');
     item.set_label(long_date);
 }
