@@ -10,6 +10,24 @@ ephemerides for astronomical objects.*
 
 [1]: https://launchpad.net/~thebernmeister/+archive/ubuntu/ppa
 
+## Screenshots
+
+![indicator normal][sc1]  
+Normal appearance of the indicator
+
+![indicator menu][sc2]  
+Menu of the indicator, shown on click
+
+![indicator with solar term][sc3]  
+Indicator showing solar term information
+
+Note: The conversion is calculated using timezone UTC+8 (HKT), while the clock
+shown above is using timezone UTC+1.
+
+[sc1]: screenshots/sc1.png
+[sc2]: screenshots/sc2.png
+[sc3]: screenshots/sc3.png
+
 ## Dependencies
 
  - [Node.js][2]
