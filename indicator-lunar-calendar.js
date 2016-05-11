@@ -74,6 +74,14 @@ function update_indicator() {
     indicator.set_icon(__dirname + '/icons/' + lunar.zodiac + '.svg');
     indicator.set_label(compact_date, '');
     item.set_label(long_date);
+    
+    console.log('Indicator updated. ' + lunar.hour + ' Time: ' + new Date());
+    /* DO NOT REMOVE THE ABOVE LINE.
+     * I have no absolutely no idea why but the indicator doesn't get
+     * updated if this line is removed.
+     * It wasn't needed though before implementing the DBus section below.
+     * So perhaps some kind of conflict between the two?
+     */
 }
 
 var job = new CronJob({
