@@ -23,27 +23,27 @@
  */
 
 /* import dependencies */
-var GNode = require('node-gtk');
-var Gtk = GNode.importNS('Gtk');
-var AppIndicator3 = GNode.importNS('AppIndicator3');
+const gi = require('node-gtk');
+const Gtk = gi.require('Gtk', '3.0');
+const AppIndicator3 = gi.require('AppIndicator3');
 var CronJob = require('cron').CronJob;
 var LunarCalendar = require('lunar-calendar-zh');
 var DBus = require('dbus-native');
 
 /* setup indicator object */
-GNode.startLoop();
-Gtk.init(null);
+gi.startLoop();
+Gtk.init();
 var indicator = AppIndicator3.Indicator.new(
     "lunar-indicator",
     __dirname + '/icons/鼠.svg',
     AppIndicator3.IndicatorCategory.APPLICATION_STATUS
 );
-indicator.set_status(AppIndicator3.IndicatorStatus.ACTIVE);
+indicator.setStatus(AppIndicator3.IndicatorStatus.ACTIVE);
 var menu = new Gtk.Menu();
 var item = new Gtk.MenuItem();
 menu.append(item);
-indicator.set_menu(menu);
-menu.show_all();
+indicator.setMenu(menu);
+menu.showAll();
 
 function update_indicator() {
     /* get current time at UTC+8, add 1 to date if after 23:00 (子時) */
@@ -71,9 +71,9 @@ function update_indicator() {
     long_date += '\n' + lunar.hour + '時';
     
     /* output to indicator */
-    indicator.set_icon(__dirname + '/icons/' + lunar.zodiac + '.svg');
-    indicator.set_label(compact_date, '');
-    item.set_label(long_date);
+    indicator.setIcon(__dirname + '/icons/' + lunar.zodiac + '.svg');
+    indicator.setLabel(compact_date, '');
+    item.setLabel(long_date);
     
     console.log('Indicator updated. ' + lunar.hour + ' Time: ' + new Date());
     /* DO NOT REMOVE THE ABOVE LINE.
