@@ -3,7 +3,7 @@
 An application indicator for Unity that displays the current date and time
 in lunar calendar.
 
-Copyright (c) 2016 Adrian I Lam <adrianiainlam@gmail.com>
+Copyright (c) 2016-2019 Adrian I Lam <spam@adrianiainlam.tk> s/spam/me/
 
 *Not to be confused with [indicator-lunar][1], which shows attributes and
 ephemerides for astronomical objects.*
@@ -30,51 +30,41 @@ shown above is using timezone UTC+1.
 
 ## Dependencies
 
- - [Node.js][2]
-   
-   Note: node-gtk, one of this program's dependencies, requires nodejs version
-   5 or above.
-   
-   [2]: https://nodejs.org/en/
+ - Python 3
 
- - [node-gtk][3] (by @WebReflection)
- 
-   npm package: https://www.npmjs.com/package/node-gtk
-   
-   Dependencies: build-essential, git, nodejs (>= 5), gobject-introspection,
-   libgirepository1.0-dev
-   
-   Note: This package failed to build for me. I had to remove `-Werror` from
-   `cflags` in file "bindings.gyp" to get it to build.
-   
-   [3]: https://github.com/WebReflection/node-gtk
-   
- - [lunar-calendar-zh][4] (by @roadmanfong)
+ - [LunarCalendarPy][lcp] (included as submodule here)
 
-   npm package: https://www.npmjs.com/package/lunar-calendar-zh
-   
-   Note: This package contains a bug which renders it useless if your computer
-   is set to a time zone which observes Daylight Saving. I have forked it and
-   fixed it in <https://github.com/adrianiainlam/LunarCalendar>.
-   
-   [4]: https://github.com/roadmanfong/LunarCalendar
-   
- - [node-cron (cron)][5] (by @ncb000gt)
- 
-   npm package: https://www.npmjs.com/package/cron
-   
-   [5]: https://github.com/ncb000gt/node-cron
-   
- - [node-dbus (dbus-native)][6] (by @sidorares)
- 
-   npm package: https://www.npmjs.com/package/dbus-native
-   
-   [6]: https://github.com/sidorares/node-dbus
+   Translated from the JavaScript [LunarCalendar][lc] library by GitHub user
+   @zzyss86.
+
+   [lc]: https://github.com/zzyss86/LunarCalendar
+   [lcp]: https://adrianiainlam.tk/git/?p=LunarCalendarPy.git;a=summary
+
+ - [schedule][schedule]
+
+   Used for periodic update of the indicator.
+
+   [schedule]: https://pypi.org/project/schedule/
+
+ - [dbus-python][dbus]
+
+   Detects suspends/hibernates which would cause incorrect timings
+   used by schedule.
+
+   [dbus]: https://pypi.org/project/dbus-python/
+
+This indicator used to be written in JavaScript (node.js) using the
+node-gtk package, but it was eventually abandoned, got replaced,
+the replacement was abandoned, etc. The situation was a bit too messy
+for me so I decided to just rewrite the whole thing in Python, which
+would also make installation easier for most standard Ubuntus, and
+would use less RAM.
+
 
 ## Usage
 
- 1. Install the dependencies listed above.
- 2. Clone this repository.
+ 1. Install schedule and dbus-python (`pip install schedule dbus-python`).
+ 2. Clone this repository (`git clone --recurse-submodules git://adrianiainlam.tk/indicator-lunar-calendar.git`).
  3. Add the script as a startup application.
  4. Run the script manually for the first time. (Alternatively, log out
     and log in again.)
@@ -86,4 +76,4 @@ shown above is using timezone UTC+1.
 ## License
 
 This program is released under the MIT License. For the full text of this
-license, please refer to the file "indicator-lunar-calendar.js".
+license, please refer to the file "indicator-lunar-calendar.py".

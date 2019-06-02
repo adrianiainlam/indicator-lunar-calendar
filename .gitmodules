@@ -1,0 +1,3 @@
+[submodule "LunarCalendarPy"]
+	path = LunarCalendarPy
+	url = git://adrianiainlam.tk/LunarCalendarPy.git
