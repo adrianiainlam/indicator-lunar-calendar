@@ -81,8 +81,8 @@ class IndicatorLunarCalendar:
             lunar['lunarMonthName'] + lunar['lunarDayName']
         )
         if lunar['term']:
-            compact_date += ' ' + lunar['term']
-            long_date += ' ' + lunar['term']
+            compact_date += '　' + lunar['term']
+            long_date += '　' + lunar['term']
         long_date += '\n' + lunar['hour'] + '時'
 
         self.indicator.set_icon(
@@ -90,6 +90,7 @@ class IndicatorLunarCalendar:
         )
         self.indicator.set_label(compact_date, '')
         self.item.set_label(long_date)
+        self.menu.show_all()
 
     def do_nothing(self, arg):
         pass
