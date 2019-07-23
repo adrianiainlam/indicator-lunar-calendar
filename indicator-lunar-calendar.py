@@ -90,7 +90,7 @@ class IndicatorLunarCalendar:
         )
         self.indicator.set_label(compact_date, '')
         self.item.set_label(long_date)
-        self.menu.show_all()
+        self.item.queue_draw()
 
     def do_nothing(self, arg):
         pass
